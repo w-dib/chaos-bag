@@ -4,7 +4,7 @@
 
 [node name="main" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Token" type="Sprite2D" parent="."]
 position = Vector2(180, 320)
 scale = Vector2(0.212352, 0.212352)
 texture = ExtResource("1_o5qli")
