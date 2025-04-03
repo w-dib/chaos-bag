@@ -13,6 +13,7 @@ scale = Vector2(0.212352, 0.212352)
 texture = ExtResource("1_o5qli")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="ChaosBag" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(192, 512)
