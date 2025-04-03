@@ -2,7 +2,9 @@
 
 A mobile-first companion app for *Arkham Horror: The Card Game*, built with **Godot 4.4**. Simulate drawing chaos tokens with style — no physical bag required.
 
-![screenshot](https://i.imgur.com/t9jEt1X.png)  
+<p align="center">
+  <img src="https://i.imgur.com/t9jEt1X.png" alt="screenshot" />
+</p>
 
 ---
 
