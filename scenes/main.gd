@@ -4,6 +4,7 @@ extends Node2D
 @onready var timer: Timer = $Timer
 @onready var token: Sprite2D = $Token
 @onready var original_scale: Vector2  = token.scale
+@onready var difficulty_buttons: HBoxContainer = $Buttons/VBoxContainer/DifficultyButtons
 
 var current_difficulty: Array[String]
 
@@ -93,6 +94,9 @@ func _ready():
 	current_difficulty = standard
 	chaos_bag.connect("clicked", _on_clicked)
 	timer.timeout.connect(_on_timer_timeout)
+	for child in difficulty_buttons.get_children():
+		if child.has_signal("difficulty_chosen"):
+			child.difficulty_chosen.connect(_on_difficulty_selected)
 	token.hide()
 	
 func _on_clicked():
@@ -116,3 +120,16 @@ func _on_timer_timeout():
 		tween.set_trans(Tween.TRANS_SINE)
 		tween.tween_property(token, "scale", Vector2(original_scale * 0.8), 0.1)
 		tween.tween_property(token, "scale", Vector2(original_scale * 1), 0.1)
+
+func _on_difficulty_selected(difficulty):
+	match difficulty.to_lower():
+		"easy":
+			current_difficulty = easy
+		"standard":
+			current_difficulty = standard
+		"hard":
+			current_difficulty = hard
+		"expert":
+			current_difficulty = expert
+		_:
+			push_warning("Unrecognized difficulty: " + difficulty)

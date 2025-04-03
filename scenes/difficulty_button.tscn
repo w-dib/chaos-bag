@@ -12,7 +12,7 @@ font = ExtResource("2_lx6yk")
 custom_minimum_size = Vector2(80, 80)
 texture_normal = ExtResource("1_6jkxg")
 texture_pressed = ExtResource("2_0j3ep")
-texture_disabled = ExtResource("2_0j3ep")
+texture_focused = ExtResource("2_0j3ep")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_h380g")
@@ -36,4 +36,6 @@ label_settings = SubResource("LabelSettings_yaa6t")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
