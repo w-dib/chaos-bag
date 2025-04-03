@@ -4,91 +4,95 @@ extends Node2D
 @onready var timer: Timer = $Timer
 @onready var token: Sprite2D = $Token
 
-var current_difficulty
+var current_difficulty: Array[String]
+
+var token_textures := {
+	"auto_fail": preload("res://assets/tokens/auto_fail.png"),
+	"bless": preload("res://assets/tokens/bless.png"),
+	"cultist": preload("res://assets/tokens/cultist.png"),
+	"curse": preload("res://assets/tokens/curse.png"),
+	"elder_sign": preload("res://assets/tokens/elder_sign.png"),
+	"elder_thing": preload("res://assets/tokens/elder_thing.png"),
+	"frost": preload("res://assets/tokens/frost.png"),
+	"grave_stone": preload("res://assets/tokens/grave_stone.png"),
+	"skull": preload("res://assets/tokens/skull.png"),
+	"token_minus_eight": preload("res://assets/tokens/token_minus_eight.png"),
+	"token_minus_five": preload("res://assets/tokens/token_minus_five.png"),
+	"token_minus_four": preload("res://assets/tokens/token_minus_four.png"),
+	"token_minus_three": preload("res://assets/tokens/token_minus_three.png"),
+	"token_minus_two": preload("res://assets/tokens/token_minus_two.png"),
+	"token_minus_one": preload("res://assets/tokens/token_minus_one.png"),
+	"token_minus_six": preload("res://assets/tokens/token_minus_six.png"),
+	"token_minus_seven": preload("res://assets/tokens/token_minus_seven.png"),
+	"token_plus_one": preload("res://assets/tokens/token_plus_one.png"),
+	"token_zero": preload("res://assets/tokens/token_zero.png"),
+}
 
 var easy_tokens: Array[String] = [
-	"res://assets/tokens/token_plus_one.png",
-	"res://assets/tokens/token_plus_one.png",
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/cultist.png",
-	"res://assets/tokens/grave_stone.png",
-	"res://assets/tokens/auto_fail.png",
-	"res://assets/tokens/elder_sign.png",
+	"token_plus_one", "token_plus_one",
+	"token_zero", "token_zero", "token_zero",
+	"token_minus_one", "token_minus_one", "token_minus_one",
+	"token_minus_two", "token_minus_two",
+	"skull", "skull",
+	"cultist",
+	"grave_stone",
+	"auto_fail",
+	"elder_sign"
 ]
 
 var standard_tokens: Array[String] = [
-	"res://assets/tokens/token_plus_one.png",
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/token_minus_three.png",
-	"res://assets/tokens/token_minus_four.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/cultist.png",
-	"res://assets/tokens/grave_stone.png",
-	"res://assets/tokens/auto_fail.png",
-	"res://assets/tokens/elder_sign.png",
+	"token_plus_one",
+	"token_zero", "token_zero",
+	"token_minus_one", "token_minus_one", "token_minus_one",
+	"token_minus_two", "token_minus_two",
+	"token_minus_three",
+	"token_minus_four",
+	"skull", "skull",
+	"cultist",
+	"grave_stone",
+	"auto_fail",
+	"elder_sign"
 ]
 
 var hard_tokens: Array[String] = [
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/token_minus_three.png",
-	"res://assets/tokens/token_minus_three.png",
-	"res://assets/tokens/token_minus_four.png",
-	"res://assets/tokens/token_minus_five.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/cultist.png",
-	"res://assets/tokens/grave_stone.png",
-	"res://assets/tokens/auto_fail.png",
-	"res://assets/tokens/elder_sign.png",
+	"token_zero", "token_zero", "token_zero",
+	"token_minus_one", "token_minus_one",
+	"token_minus_two", "token_minus_two",
+	"token_minus_three", "token_minus_three",
+	"token_minus_four",
+	"token_minus_five",
+	"skull", "skull",
+	"cultist",
+	"grave_stone",
+	"auto_fail",
+	"elder_sign"
 ]
 
 var expert_tokens: Array[String] = [
-	"res://assets/tokens/token_zero.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_one.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/token_minus_two.png",
-	"res://assets/tokens/token_minus_three.png",
-	"res://assets/tokens/token_minus_three.png",
-	"res://assets/tokens/token_minus_four.png",
-	"res://assets/tokens/token_minus_four.png",
-	"res://assets/tokens/token_minus_five.png",
-	"res://assets/tokens/token_minus_six.png",
-	"res://assets/tokens/token_minus_eight.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/skull.png",
-	"res://assets/tokens/cultist.png",
-	"res://assets/tokens/grave_stone.png",
-	"res://assets/tokens/auto_fail.png",
-	"res://assets/tokens/elder_sign.png",
+	"token_zero",
+	"token_minus_one", "token_minus_one",
+	"token_minus_two", "token_minus_two",
+	"token_minus_three", "token_minus_three",
+	"token_minus_four", "token_minus_four",
+	"token_minus_five",
+	"token_minus_six",
+	"token_minus_eight",
+	"skull", "skull",
+	"cultist",
+	"grave_stone",
+	"auto_fail",
+	"elder_sign"
 ]
 
 func _ready():
+	current_difficulty = standard_tokens
 	chaos_bag.connect("clicked", _on_clicked)
 	token.hide()
 
 func _on_clicked():
+	current_difficulty.shuffle()
+	var token_key = current_difficulty[0]
+	var texture = token_textures.get(token_key)
+	token.texture = texture
 	if not token.visible:
 		token.show()
