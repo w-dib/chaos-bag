@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7sosjjlmyuee"]
+
+[ext_resource type="Texture2D" uid="uid://c2tv44766smqq" path="res://assets/button_textures/button.png" id="1_6jkxg"]
+[ext_resource type="Script" uid="uid://pmirqwp7ij5s" path="res://scenes/difficulty_button.gd" id="1_h380g"]
+[ext_resource type="Texture2D" uid="uid://c1nndknagdm3q" path="res://assets/button_textures/button_selected.png" id="2_0j3ep"]
+[ext_resource type="FontFile" uid="uid://drqlj0n6q4b4s" path="res://assets/fonts/GermaniaOne-Regular.ttf" id="2_lx6yk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yaa6t"]
+font = ExtResource("2_lx6yk")
+
+[node name="DifficultyButton" type="TextureButton"]
+custom_minimum_size = Vector2(80, 80)
+texture_normal = ExtResource("1_6jkxg")
+texture_pressed = ExtResource("2_0j3ep")
+texture_disabled = ExtResource("2_0j3ep")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_h380g")
+button_label = "Easy"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+label_settings = SubResource("LabelSettings_yaa6t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

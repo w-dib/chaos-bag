@@ -29,7 +29,7 @@ var token_textures := {
 	"token_zero": preload("res://assets/tokens/token_zero.png"),
 }
 
-var easy_tokens: Array[String] = [
+var easy: Array[String] = [
 	"token_plus_one", "token_plus_one",
 	"token_zero", "token_zero", "token_zero",
 	"token_minus_one", "token_minus_one", "token_minus_one",
@@ -41,7 +41,7 @@ var easy_tokens: Array[String] = [
 	"elder_sign"
 ]
 
-var standard_tokens: Array[String] = [
+var standard: Array[String] = [
 	"token_plus_one",
 	"token_zero", "token_zero",
 	"token_minus_one", "token_minus_one", "token_minus_one",
@@ -55,7 +55,7 @@ var standard_tokens: Array[String] = [
 	"elder_sign"
 ]
 
-var hard_tokens: Array[String] = [
+var hard: Array[String] = [
 	"token_zero", "token_zero", "token_zero",
 	"token_minus_one", "token_minus_one",
 	"token_minus_two", "token_minus_two",
@@ -69,7 +69,7 @@ var hard_tokens: Array[String] = [
 	"elder_sign"
 ]
 
-var expert_tokens: Array[String] = [
+var expert: Array[String] = [
 	"token_zero",
 	"token_minus_one", "token_minus_one",
 	"token_minus_two", "token_minus_two",
@@ -90,7 +90,7 @@ var cycle_count := 0
 var max_cycles := 12
 
 func _ready():
-	current_difficulty = standard_tokens
+	current_difficulty = standard
 	chaos_bag.connect("clicked", _on_clicked)
 	timer.timeout.connect(_on_timer_timeout)
 	token.hide()
