@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd8wexhoa5i28"]
+[gd_scene load_steps=4 format=3 uid="uid://bd8wexhoa5i28"]
 
 [ext_resource type="Texture2D" uid="uid://dssfmyrhtfdch" path="res://assets/tokens/auto_fail.png" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://chvvhlt8wbsnv" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://86v1qxanex1q" path="res://scenes/chaos_bag.tscn" id="2_0wfyh"]
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_sugp2")
 
 [node name="Token" type="Sprite2D" parent="."]
-position = Vector2(180, 320)
+position = Vector2(192, 320)
 scale = Vector2(0.212352, 0.212352)
 texture = ExtResource("1_o5qli")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ChaosBag" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(192, 512)
